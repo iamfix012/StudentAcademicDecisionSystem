@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  *
  * Group Members & Contributions:
  * Ovayo  - Requirement 1 (Age / Adult-Minor), Requirement 2 (Mark Validation), Exercise 1 (5-tier grading)
- * Unathi - Requirement 3 (Attendance eligibility), Exercise 2 (Fee discount)
+ * Unathi Kolweni - Requirement 3 (Attendance eligibility), Exercise 2 (Fee discount)
  * Tatum  - Requirement 4 (Academic Result), Requirement 5 (Combined Decision), Exercise 3 (Admission condition)
  * Vuyo   - Requirement 6 (Special Category), Requirement 7 (Service Menu / switch),
  *          Exercise 4 (Emergency academic support), Exercise 5 (Operator precedence)
@@ -91,7 +91,7 @@ public class StudentAcademicSystem {
         }
         JOptionPane.showMessageDialog(null, "Refined Academic Result (5-tier): " + academicResult);
 
-        // Requirement 3 - Implemented by Unathi
+        // Requirement 3 - Implemented by Unathi Kolweni
         // Attendance must be at least 75% for examination eligibility
         boolean attendanceOk = (attendance >= 75);
         JOptionPane.showMessageDialog(null, "Attendance Requirement (>=75%) Met: " + (attendanceOk ? "Yes" : "No"));
@@ -116,7 +116,7 @@ public class StudentAcademicSystem {
             JOptionPane.showMessageDialog(null, "Academic support not required.");
         }
 
-        // Exercise 2 - Implemented by Unathi
+        // Exercise 2 - Implemented by Unathi Kolweni
         // Fee discount decision (if-else): Special category -> 20% discount, otherwise -> 5% discount
         int feeDiscount;
         if (specialCategory) {
