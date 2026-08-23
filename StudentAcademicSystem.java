@@ -164,7 +164,7 @@ public class StudentAcademicSystem {
         // Step 11 - Implement switch for the Service Menu selection
         switch (choice) {
             case 1:
-                JOptionPane.showMessageDialog(null, "Academic Result: " + academicResult + " (Base Result: " + baseAcademicResult + ")");
+                JOptionPane.showMessageDialog(null, "Academic Result: " + academicResult + " (Result: " + baseAcademicResult + ")");
                 break;
             case 2:
                 JOptionPane.showMessageDialog(null, "Attendance: " + attendance + "%");
