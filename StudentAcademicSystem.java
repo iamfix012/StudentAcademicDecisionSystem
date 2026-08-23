@@ -128,21 +128,21 @@ public class StudentAcademicSystem {
 
         // Exercise 5 - Implemented by Vuyo
         // Operator Precedence demonstration
-        // In Java, && binds tighter than ||, so "true || false && false" is evaluated
+        // In Java, && takes priority over ||, so "true || false && false" is evaluated
         // as "true || (false && false)", which gives true regardless of the second half.
         boolean result1 = true || false && false;
 
-        // Adding explicit parentheses around "true || false" forces that part to be
-        // evaluated first (= true), and the outcome then depends on the && with false,
+        // Adding brackets around "true || false" forces that part to be
+        // evaluated first, and the outcome then depends on the && with false,
         // giving a different result: false.
         boolean result2 = (true || false) && false;
 
         String precedenceExplanation =
-                "Without parentheses, && is evaluated before ||, so the expression short-circuits to true "
-                + "because the OR condition is already satisfied.\nResult without parentheses: " + result1
-                + "\n\nWith parentheses forcing the OR to be evaluated first, the outcome then depends on "
-                + "the AND with false, which changes the result.\nResult with parentheses: " + result2
-                + "\n\nThis shows that operator precedence (and how you use parentheses) can change the final outcome of a boolean expression.";
+                "Without brackets, && is evaluated before ||, so the expression short-circuits to true "
+                + "because the OR condition is already satisfied. Result without parentheses: " + result1
+                + "With parentheses forcing the OR to be evaluated first, the outcome then depends on "
+                + "the AND with false, which changes the result. Result with parentheses: " + result2
+                + "This shows how operator precedence can change the final outcome of a boolean expression.";
         JOptionPane.showMessageDialog(null, precedenceExplanation, "Operator Precedence", JOptionPane.INFORMATION_MESSAGE);
 
         // Requirement 7 - Implemented by Vuyo
