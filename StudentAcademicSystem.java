@@ -104,7 +104,16 @@ public class StudentAcademicSystem {
         // Exercise 3 - Implemented by Tatum
         // Step 9 - Nested/Boolean Decision Making: Admission condition
         // A student may be admitted when: age >= 18 AND mark >= 50 AND attendance >= 75
-        boolean admitted = (age >= 18 && mark >= 50 && attendance >= 75);
+        boolean admitted;
+        if (age >= 18) {
+            if (mark >= 50 && attendance >= 75) {
+                admitted = true;
+            } else {
+                admitted = false;
+            }
+        } else {
+            admitted = false;
+        }
         JOptionPane.showMessageDialog(null, "Admission Decision: " + (admitted ? "Admitted" : "Not Admitted"));
 
         // Exercise 4 - Implemented by Vuyo
