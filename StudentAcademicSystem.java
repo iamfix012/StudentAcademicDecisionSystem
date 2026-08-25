@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
  *
  * Group Members & Contributions:
  * Ovayo  - Requirement 1 (Age / Adult-Minor), Requirement 2 (Mark Validation), Exercise 1 (5-tier grading)
- * Unathi Kolweni - Requirement 3 (Attendance eligibility), Exercise 2 (Fee discount)
+ * Unathi - Requirement 3 (Attendance eligibility), Exercise 2 (Fee discount)
  * Tatum  - Requirement 4 (Academic Result), Requirement 5 (Combined Decision), Exercise 3 (Admission condition)
  * Vuyo   - Requirement 6 (Special Category), Requirement 7 (Service Menu / switch),
  *          Exercise 4 (Emergency academic support), Exercise 5 (Operator precedence)
@@ -21,14 +21,12 @@ public class StudentAcademicSystem {
         // Step 2 - Capture Student Information - Implemented by Group
         String studentName = JOptionPane.showInputDialog("Welcome, student. Please enter your name.");
         int age = Integer.parseInt(JOptionPane.showInputDialog("Please enter your age."));
-        String studentCategoryInput = JOptionPane.showInputDialog("Please enter your student category (e.g. Regular / International).");
         int attendance = Integer.parseInt(JOptionPane.showInputDialog("Please enter your attendance percentage (0-100)."));
         double mark = Double.parseDouble(JOptionPane.showInputDialog("Please enter your mark (0-100)."));
 
         // Step 3 - Display Student Information - Implemented by Group
         String details = "Name: " + studentName
                 + "\nAge: " + age
-                + "\nCategory: " + studentCategoryInput
                 + "\nAttendance: " + attendance + "%"
                 + "\nMark: " + mark;
         JOptionPane.showMessageDialog(null, details, "Student Details", JOptionPane.INFORMATION_MESSAGE);
@@ -45,6 +43,12 @@ public class StudentAcademicSystem {
             ageStatus = "Minor";
         }
         JOptionPane.showMessageDialog(null, "You are classified as: " + ageStatus);
+
+        // Immediate termination if age is 17 or below
+        if (age <= 17) {
+            JOptionPane.showMessageDialog(null, "Access Denied: You must be 18 or older to proceed.\nExiting program.");
+            return;
+        }
 
         // Requirement 6 - Implemented by Vuyo
         // Step 5 - Special Category using OR (||): age < 18 OR age > 60
@@ -75,7 +79,6 @@ public class StudentAcademicSystem {
 
         // Exercise 1 - Implemented by Ovayo
         // Refines Requirement 4 into a 5-tier grading scale (if-else-if).
-        // This refined result is used later in the Service Menu.
         // 90-100 -> Excellent | 75-89 -> Very Good | 60-74 -> Good | 50-59 -> Pass | Below 50 -> Fail
         String academicResult;
         if (mark >= 90 && mark <= 100) {
@@ -91,7 +94,7 @@ public class StudentAcademicSystem {
         }
         JOptionPane.showMessageDialog(null, "Refined Academic Result (5-tier): " + academicResult);
 
-        // Requirement 3 - Implemented by Unathi Kolweni
+        // Requirement 3 - Implemented by Unathi
         // Attendance must be at least 75% for examination eligibility
         boolean attendanceOk = (attendance >= 75);
         JOptionPane.showMessageDialog(null, "Attendance Requirement (>=75%) Met: " + (attendanceOk ? "Yes" : "No"));
@@ -104,16 +107,7 @@ public class StudentAcademicSystem {
         // Exercise 3 - Implemented by Tatum
         // Step 9 - Nested/Boolean Decision Making: Admission condition
         // A student may be admitted when: age >= 18 AND mark >= 50 AND attendance >= 75
-        boolean admitted;
-        if (age >= 18) {
-            if (mark >= 50 && attendance >= 75) {
-                admitted = true;
-            } else {
-                admitted = false;
-            }
-        } else {
-            admitted = false;
-        }
+        boolean admitted = (age >= 18 && mark >= 50 && attendance >= 75);
         JOptionPane.showMessageDialog(null, "Admission Decision: " + (admitted ? "Admitted" : "Not Admitted"));
 
         // Exercise 4 - Implemented by Vuyo
@@ -125,7 +119,7 @@ public class StudentAcademicSystem {
             JOptionPane.showMessageDialog(null, "Academic support not required.");
         }
 
-        // Exercise 2 - Implemented by Unathi Kolweni
+        // Exercise 2 - Implemented by Unathi
         // Fee discount decision (if-else): Special category -> 20% discount, otherwise -> 5% discount
         int feeDiscount;
         if (specialCategory) {
@@ -137,21 +131,15 @@ public class StudentAcademicSystem {
 
         // Exercise 5 - Implemented by Vuyo
         // Operator Precedence demonstration
-        // In Java, && takes priority over ||, so "true || false && false" is evaluated
-        // as "true || (false && false)", which gives true regardless of the second half.
         boolean result1 = true || false && false;
-
-        // Adding brackets around "true || false" forces that part to be
-        // evaluated first, and the outcome then depends on the && with false,
-        // giving a different result: false.
         boolean result2 = (true || false) && false;
 
         String precedenceExplanation =
-                "Without brackets, && is evaluated before ||, so the expression short-circuits to true "
-                + "because the OR condition is already satisfied. Result without parentheses: " + result1
-                + "With parentheses forcing the OR to be evaluated first, the outcome then depends on "
-                + "the AND with false, which changes the result. Result with parentheses: " + result2
-                + "This shows how operator precedence can change the final outcome of a boolean expression.";
+                "Without parentheses, && is evaluated before ||, so the expression short-circuits to true "
+                + "because the OR condition is already satisfied.\nResult without parentheses: " + result1
+                + "\n\nWith parentheses forcing the OR to be evaluated first, the outcome then depends on "
+                + "the AND with false, which changes the result.\nResult with parentheses: " + result2
+                + "\n\nThis shows that operator precedence (and how you use parentheses) can change the final outcome of a boolean expression.";
         JOptionPane.showMessageDialog(null, precedenceExplanation, "Operator Precedence", JOptionPane.INFORMATION_MESSAGE);
 
         // Requirement 7 - Implemented by Vuyo
@@ -166,14 +154,14 @@ public class StudentAcademicSystem {
                     + "4. Student Support\n"
                     + "5. Exit"));
         } catch (NumberFormatException e) {
-            choice = -1; // forces the default/invalid case in the switch below
+            choice = -1; // forces default/invalid case in switch below
         }
 
         // Requirement 7 - Implemented by Vuyo
         // Step 11 - Implement switch for the Service Menu selection
         switch (choice) {
             case 1:
-                JOptionPane.showMessageDialog(null, "Academic Result: " + academicResult + " (Result: " + baseAcademicResult + ")");
+                JOptionPane.showMessageDialog(null, "Academic Result: " + academicResult + " (Base Result: " + baseAcademicResult + ")");
                 break;
             case 2:
                 JOptionPane.showMessageDialog(null, "Attendance: " + attendance + "%");
